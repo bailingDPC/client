@@ -106,10 +106,101 @@ function getVisitor(){
     return axios.post("/visitor");
 }
 
+//  日记接口
+function getDiary(){
+    return axios.get("/diary");
+}
+
+//获取友链
+function getLinks(){
+    return axios.get("/links");
+}
+
 /*
 * 后台管理类的接口
 * */
+//登陆
+function login(options){
+    return axios.post("/admin/login", options);
+}
+//验证是否登陆
+function ifLogin(){
+    return axios.post("/admin/login/ifLogin");
+}
+//发表文章
+function postArticle({type, title, content, tag, surface}){
+    return axios.post("/admin/article/add", {type, title, tag, surface,content});
+}
+//请求文章列表
+function getArticleList(skip=0, limit=5){
+    return axios.get(`/admin/article/get?skip=${skip}&limit=${limit}`,)
+}
 
+//请求文章列表信息
+function getArticleINFO(){
+    return axios.get("/admin/article/getInfo");
+}
+//删除文章
+function deleteArticle(_id){
+    if(!_id){
+        return Promise.reject();
+    }
+    return axios.post("/admin/article/delete", {_id});
+}
+
+//更新文章
+function updateArticle(_id, options){
+    return axios.post("/admin/article/update", {_id, options});
+}
+
+//请求用户列表
+export function getUserList(){
+    return axios.get(`/admin/user/get`,)
+}
+//删除用户
+function deleteUser(_id){
+    return axios.post("/admin/user/delete", {_id});
+}
+
+//更新用户数据
+function updateUserData(_id, data){
+    return axios.post("/admin/user/update", {_id, data});
+}
+
+//请求留言列表
+function getMessageList_admin(){
+    return axios.get("/admin/message/get");
+}
+//删除留言
+function deleteMessage(_id){
+    return axios.post("/admin/message/delete", {_id});
+}
+
+//发布日记
+function postDiary(txt, img){
+    return axios.post("/admin/diary/submit", {txt, img});
+}
+//请求日记
+function getDiaryList(){
+    return axios.get("/admin/diary");
+}
+//删除日记
+function deleteDiary(_id){
+    return axios.post("/admin/diary/delete",{_id});
+}
+
+//发布友链
+function postlinks(options){
+    return axios.post("/admin/links/submit", options);
+}
+//请求友链
+function getLinkList(){
+    return axios.get("/admin/links");
+}
+//删除友链
+function deleteLink(_id){
+    return axios.post("/admin/links/delete",{_id});
+}
 export {
     getArticleHot,
     getArticleInfo,
@@ -126,7 +217,26 @@ export {
     getArticleExtend,
     getArticleSearch,
     getVisitor,
-    postLogout
+    postLogout,
+    getDiary,
+    getLinks,
 
-
+    //后台相关
+    postArticle,
+    getArticleList,
+    getArticleINFO,
+    deleteArticle,
+    updateArticle,
+    deleteUser,
+    updateUserData,
+    getMessageList_admin,
+    deleteMessage,
+    postDiary,
+    getDiaryList,
+    deleteDiary,
+    getLinkList,
+    postlinks,
+    deleteLink,
+    login,
+    ifLogin
 }

@@ -73,7 +73,7 @@
             contentToText(value){
                 let div = document.createElement("div");
                 div.innerHTML=value;
-                return div.innerHTML;
+                return div.innerText;
             }
         },
         computed: {

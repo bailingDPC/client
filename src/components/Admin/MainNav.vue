@@ -40,7 +40,7 @@
         left: 0;
         width: 100%;
         height: 50px;
-        background-color: grey;
+        background-color: #26233b;
 
         .el-breadcrumb {
             line-height: 50px;

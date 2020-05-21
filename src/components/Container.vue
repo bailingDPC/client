@@ -39,15 +39,18 @@
                     <ul>
                         <li v-if="!!getArticleRecommend.title">
                             <i>{{ 1 }}</i>
-                            <router-link :to="'/Article/'+getArticleRecommend._id">{{ getArticleRecommend.title }}</router-link>
+                            <router-link :to="'/Article/'+getArticleRecommend._id">{{ getArticleRecommend.title }}
+                            </router-link>
                         </li>
                     </ul>
                 </div>
                 <div class="visitor">
                     <h3>最近访客</h3>
                     <ul>
-                        <li v-for="(item, index) in visitor" :key="index"
-                            :style="{backgroundImage:'url('+item.user.photo+')'}">
+                        <li
+                                v-for="(item, index) in visitor"
+                                :key="index"
+                                :style="{backgroundImage:'url('+ item.user.photo +')'}">
                             <p>{{ item.user.user }}</p>
                         </li>
                     </ul>
@@ -112,7 +115,7 @@
                     if (keywords) {
                         getArticleSearch(keywords)
                             .then(res => {
-                                this.searchList = res.data.data;
+                                res.data.data && (this.searchList = res.data.data);
                             })
                             .catch(() => {
                                 this.searchList = [];
@@ -143,7 +146,7 @@
                     console.log("err", err);
                 });
             //请求最近访客信息
-            getVisitor().then((res)=>{
+            getVisitor().then((res) => {
                 this.visitor = res.data.data;
             })
         },

@@ -7,11 +7,11 @@
                 <h2>我自横刀向天笑 去留肝胆两昆仑</h2>
                 <router-link to="/blog/0">Enter Blog</router-link>
             </div>
-            <i class="bg-icon el-icon-arrow-down"></i>
+            <i class="bg-icon el-icon-arrow-down" @click="moveDown"></i>
         </div>
 
         <!-- 右上角菜单 -->
-        <div :class="['menu', {'click': ifClick}]">
+        <div :class="['menu', {'click': ifClick }]">
             <div class="btn" @click="handleClick">
                 <span></span><span></span><span></span>
             </div>
@@ -38,7 +38,7 @@
                             <div class="bgImg"
                                  :style="{backgroundImage:'url('+item.surface+')'}"></div>
                             <div class="link">
-                                <a href=""><i class="el-icon-link"></i></a>
+                                <a :href="`/article/${item._id}`"><i class="el-icon-link"></i></a>
                             </div>
                         </div>
                         <div class="info">
@@ -56,8 +56,12 @@
         <div class="about">
             <div class="wrap">
                 <ul class="loading">
-                    <li><router-link to="/about">关于</router-link></li>
-                    <li><router-link to="/links">+友情链接</router-link></li>
+                    <li>
+                        <router-link to="/about">关于</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/links">+友情链接</router-link>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -77,6 +81,11 @@
         }
         return top;
     }
+
+
+    let scrollTop = document.documentElement.scrollTop;
+    let h = window.innerHeight;
+
 
     export default {
         name: "Home",
@@ -109,8 +118,18 @@
             handleClick() {
                 this.ifClick = !this.ifClick;
             },
-
-
+            moveDown() {
+                scrollTop += 25;
+                if (scrollTop < h) {
+                    requestAnimationFrame(this.moveDown);
+                } else {
+                    scrollTop = h;
+                }
+                document.documentElement.scrollTop = scrollTop;
+                if (scrollTop === h) {
+                    scrollTop = 0;
+                }
+            }
         },
         filters: {
             date(value) {
@@ -563,15 +582,16 @@
             }
         }
 
-        .about{
+        .about {
             position: relative;
-            z-index:9;
+            z-index: 9;
             width: 100%;
             height: 48px;
             padding: 111px 0;
             margin: 0 auto;
             background: url("../../../../assets/img/home_bg.jpg") center center/cover fixed;
-            &::after{
+
+            &::after {
                 content: "";
                 position: absolute;
                 top: 0;
@@ -579,8 +599,9 @@
                 z-index: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0,0,0,.5);
+                background-color: rgba(0, 0, 0, .5);
             }
+
             ul {
                 position: relative;
                 z-index: 9;
@@ -588,22 +609,27 @@
                 margin: 0 auto;
                 opacity: 1;
                 transition: .6s;
+
                 &.loading {
                     width: 1000px;
                     opacity: 0;
                 }
+
                 li {
                     position: relative;
                     width: 198px;
                     height: 46px;
                     border: 1px solid #fff;
-                    &:nth-child(1){
+
+                    &:nth-child(1) {
                         float: left;
                     }
-                    &:nth-child(2){
+
+                    &:nth-child(2) {
                         float: right;
                     }
-                    &::after{
+
+                    &::after {
                         position: absolute;
                         left: 0;
                         top: 0;
@@ -613,10 +639,12 @@
                         background-color: #6bc30d;
                         transition: width .5s;
                     }
-                    &:hover::after{
+
+                    &:hover::after {
                         width: 100%;
                     }
-                    a{
+
+                    a {
                         position: relative;
                         z-index: 1;
                         display: block;

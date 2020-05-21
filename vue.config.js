@@ -1,4 +1,6 @@
-module.exports={
+const webpack = require("webpack");
+
+module.exports = {
     pages: {
         index: {
             entry: "src/pages/index.js",
@@ -9,9 +11,18 @@ module.exports={
         admin: {
             entry: "src/pages/admin/admin.js",
             filename: "admin.html",
-            template: "public/index.html",
+            template: "public/admin.html",
             title: "后台管理"
-
         }
+    },
+    configureWebpack: {
+
+        plugins: [
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery",
+                'windows.jQuery': "jquery"
+            })
+        ]
     }
 };

@@ -5,7 +5,7 @@
             <el-timeline>
                 <el-timeline-item
                         v-for="(item, index) in diaryList"
-                        :timestamp="item.date | getD"
+                        :timestamp="item.date | getDate"
                         placement="top"
                         :reverse="false"
                         :key="index"
@@ -23,38 +23,30 @@
 </template>
 
 <script>
+    import {getDiary} from "../../../../api";
     import Nav from "../../../../components/Nav";
+
+
     export default {
         name: "Diary",
         components : {Nav},
         data(){
             return {
-                diaryList : [
-                    {txt: "这是第一篇", img: "http://localhost:3000/images/defaultSurface.jpg", date: "2020/3/10"},
-                    {txt: "这是第二篇", img: "", date: "2020/3/4"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-                    {txt: "这是第三篇", img: "", date: "2029/3/5"},
-
-                ]
+                diaryList : []
             }
         },
         filters:{
-            getD(val){
+            getDate(val){
                 let date = new Date(val);
                 return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate();
             }
         },
 
         created() {
-            // getDiary()
-            //     .then(res=>{
-            //         this.diaryList = res.data.data;
-            //     })
+            getDiary()
+                .then(res=>{
+                    this.diaryList = res.data.data;
+                })
         }
     }
 </script>

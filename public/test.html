@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="lib/editor.md-master/css/editormd.min.css"/>
+</head>
+<body>
+<div id="test-editor">
+    <textarea style="display:none;">### Editor.md
+
+**Editor.md**: The open source embeddable online markdown editor, based on CodeMirror & jQuery & Marked.
+    </textarea>
+</div>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/editor.md-master/editormd.js"></script>
+<script>
+        var editor = editormd("test-editor", {
+            path: '../src/assets/js/editor.md-master/lib/',
+            height: 300,
+            taskList        : true, // 任务完成图
+            watch: false,
+            placeholder: "本编辑器支持Markdown编辑，左边编写，右边预览",
+            tex             : true,  // 科学公式
+            flowChart       : true,  // 流程图
+            sequenceDiagram : true,  // 时序图/序列图
+            syncScrolling: "single", // 预览,编辑窗同步滚动
+            toolbarIcons: ["undo", "redo", "|","bold","italic","|", "image","link","||","watch","search"],
+            htmlDecode: "style,script,iframe,title,onmouseover,onmouseout,style",
+            // imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "JPG", "JPEG", "GIF", "PNG", "BMP", "WEBP"],
+            // imageUploadURL: DocConfig.server+"/api/page/uploadImg",
+            onload: () => {
+                console.log('onload');
+                console.log(this.instance);
+            },
+        });
+        console.log(editormd);
+        console.log(editor);
+</script>
+</body>
+</html>

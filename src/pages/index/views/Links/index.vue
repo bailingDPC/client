@@ -45,6 +45,7 @@
 <script>
     import Nav from "../../../../components/Nav";
     import CanAnimation from "../../../../components/Can-animation";
+    import {getLinks} from "../../../../api";
 
 
     export default {
@@ -56,9 +57,9 @@
             }
         },
         created() {
-            // getLinks().then(res=>{
-            //     this.linksList = res.data.data;
-            // })
+            getLinks().then(res=>{
+                this.linksList = res.data.data;
+            })
         }
     }
 </script>

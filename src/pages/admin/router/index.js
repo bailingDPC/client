@@ -1,12 +1,31 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import {ifLogin} from "../../../api";
 
 Vue.use(VueRouter);
 const routes = [
     {
+        path: "/",
+        name: "Login",
+        component: () => import("../views/Login/index")
+    },
+    {
         path: "/admin",
         name: "Admin",
         component: () => import("../views/Admin/index"),
+        beforeEnter(to, from, next) {
+            ifLogin()
+                .then((res) => {
+                    if (res.data.code === 0) {
+                        //已登录
+                        next()
+                    } else {
+                        //未登录
+                        next("/")
+                    }
+                })
+                .catch();
+        },
         children: [
             {
                 path: "",
@@ -61,13 +80,9 @@ const routes = [
             },
         ],
     },
-    {
-        path: "/",
-        name: "Login",
-        component: () => import("../views/Login/index")
-    },
 ];
 let router = new VueRouter({
+    model: "hash",
     routes,
 });
 
