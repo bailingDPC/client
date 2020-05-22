@@ -23,9 +23,9 @@
         },
         methods: {
             handleSubmit(data){
-                postArticle(data).then(()=>{
+                postArticle(data).then((res)=>{
                     this.$message({
-                        message: "上传成功",
+                        message: res.data.msg,
                         type: 'success',
                         duration : 2000
                     });

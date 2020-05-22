@@ -316,6 +316,7 @@
 
                                     .p-info {
                                         flex: 1;
+                                        padding-left: 10px;
                                         padding-bottom: 20px;
                                         border-bottom: 1px dotted #aaa;
 

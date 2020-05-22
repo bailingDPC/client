@@ -19,7 +19,7 @@
                         <ul @mouseleave="handleMouseleave">
                             <li @mouseenter="handleMouseenter(index)" v-for=" (item, index) in getArticleTags"
                                 :key="index">
-                                <router-link :to="'/Article/' + index">{{ item }}</router-link>
+                                <router-link :to="'/blog/' + index">{{ item }}</router-link>
                             </li>
                         </ul>
                         <div class="cover" :style="{top: coverIndex*40 + 'px'}"></div>

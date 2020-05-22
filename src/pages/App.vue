@@ -15,6 +15,7 @@
     }
     #root{
         width: 100%;
-        background: url("../assets/img/bg.jpg") center top/cover fixed;
+        min-height: 100vh;
+        background: url("../assets/img/bg_1.jpeg") center top/cover fixed;
     }
 </style>

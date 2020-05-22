@@ -14,7 +14,7 @@
                     <section>
                         <h1>关于我</h1>
                         <p>
-                            毕业后在古都西安某个工厂装盒子，很迷茫。2015年离开西安到成都转行做开发，然沉迷撸码，日渐消瘦。
+                            毕业后迷茫于从事什么行业,接触IT后沉迷于此。
                         </p>
                         <span>
                     可以通过以下方式联系到我：
@@ -30,14 +30,14 @@
                     <section>
                         <h1>关于本站</h1>
                         <p>
-                            本站建于2020年4月。
+                            本站建于2020年5月。
                         </p>
                         <span>
                     本站结构：
                 </span>
                         <ul>
                             <li>前 端 ：<code>ElementUi + Vue</code></li>
-                            <li>后 端 ：<code>express + node + MongoDB</code></li>
+                            <li>后 端 ：<code>express + node + MongoDB + editor.md</code></li>
                         </ul>
                         <p>
                             本站采用阿里云提供的服务器ESC。
@@ -58,7 +58,7 @@
                         </ul>
                         <br><br>
                         <div>
-                            <img src="https://yssimage.oss-cn-hangzhou.aliyuncs.com/bg9.jpg" style="width:100%;height:320px;">
+                            <img src="../../../../assets/img/bg_1.jpeg" style="width:100%;height:320px;">
                         </div>
                     </section>
                 </article>

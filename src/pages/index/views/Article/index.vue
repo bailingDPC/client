@@ -19,7 +19,9 @@
                         <p class="month">{{articleInfo.date | month}}<span>月</span></p>
                         <p class="year">{{articleInfo.date | year}}</p>
                     </section>
-                    <section class="content" v-html="articleInfo.content"></section>
+                    <section class="content">
+                        <MdView :content="articleInfo.content"></MdView>
+                    </section>
                     <section class="copyright">
                         <p class="f-toe fc-black">
                             非特殊说明，本文版权归 白灵 所有，转载请注明出处.
@@ -48,65 +50,67 @@
 </template>
 
 <script>
+
     import Nav from "../../../../components/Nav";
-
     import {getArticle, getArticleExtend} from '../../../../api'
+    import MdView from "../../../../components/MdView";
 
-    function toTwo(num){
-        return (num<10?"0":"") + num;
+    function toTwo(num) {
+        return (num < 10 ? "0" : "") + num;
     }
+
     export default {
         name: "Article",
-        components: {Nav},
-        data(){
+        components: {MdView, Nav},
+        data() {
             return {
-                articleInfo : null,
-                extendList : []
+                articleInfo: null,
+                extendList: [],
+                content: ""
             }
         },
-        filters:{
-            getTime(val){
+        filters: {
+            getTime(val) {
                 let date = new Date(val);
 
                 let YY = toTwo(date.getFullYear()),
-                    MM = toTwo(date.getMonth()+1),
+                    MM = toTwo(date.getMonth() + 1),
                     DD = toTwo(date.getDate()),
                     h = toTwo(date.getHours()),
                     m = toTwo(date.getMinutes()),
                     s = toTwo(date.getSeconds());
 
-                return `${YY}/${MM}/${DD} ${h}:${m}:${s}`;
+                return `${ YY }/${ MM }/${ DD } ${ h }:${ m }:${ s }`;
             },
-            date(value){
+            date(value) {
                 return value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)[3];
             },
-            month(value){
+            month(value) {
                 return value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)[2];
             },
-            year(value){
+            year(value) {
                 return value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)[1];
             }
         },
         created() {
             //文章信息
             getArticle(this.$route.params.id)
-                .then(res=>{
+                .then(res => {
                     if (res.data.code === 0) {
                         this.articleInfo = res.data.data;
                         //延伸阅读
                         getArticleExtend(res.data.data.tag)
-                            .then(res=>{
-                                console.log(res.data);
+                            .then(res => {
                                 this.extendList = res.data.data;
                             })
-                    }else{
+                    } else {
                         this.$router.push('/404')
                     }
                 })
-                .catch(()=>{
+                .catch(() => {
                     this.$router.push('/404')
                 });
-        }
+        },
     }
 </script>
 
@@ -117,6 +121,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+
     .Message {
         box-sizing: border-box;
         max-width: 1360px;
@@ -216,7 +221,6 @@
                 color: #787977;
 
 
-
                 a {
                     color: #3e8bc7;
                     text-decoration: none;
@@ -241,15 +245,18 @@
                     text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
                     clear: both;
                 }
-                ol{
-                    li::before{
+
+                ol {
+                    li::before {
                         content: "◈";
                         margin-right: 5px;
                         color: #787977;
                     }
-                    a{
+
+                    a {
                         color: #3e8bc7;
-                        &:hover{
+
+                        &:hover {
                             color: #6bc30d;
                             text-decoration: underline;
                         }

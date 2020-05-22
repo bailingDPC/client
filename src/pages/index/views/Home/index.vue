@@ -173,7 +173,7 @@
             position: relative;
             z-index: 9;
             width: 100%;
-            background: url("../../../../assets/img/home_bg.jpg") center center/cover no-repeat;
+            background: url("../../../../assets/img/bg_2.jpg") center center/cover no-repeat;
 
             &::after {
                 position: absolute;
@@ -458,6 +458,7 @@
                         height: 503px;
                         padding: 0 10px;
                         opacity: 1;
+                        overflow: hidden;
 
                         .img {
                             overflow: hidden;

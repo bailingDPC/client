@@ -128,8 +128,8 @@ function ifLogin(){
     return axios.post("/admin/login/ifLogin");
 }
 //发表文章
-function postArticle({type, title, content, tag, surface}){
-    return axios.post("/admin/article/add", {type, title, tag, surface,content});
+function postArticle({type, title, content, tag, surface, contentHTML}){
+    return axios.post("/admin/article/add", {type, title, tag, surface,content, contentHTML});
 }
 //请求文章列表
 function getArticleList(skip=0, limit=5){

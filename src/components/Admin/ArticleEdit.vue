@@ -22,7 +22,7 @@
                 <Upload @uploadSuccess="uploadSuccess"></Upload>
             </el-form-item>
             <el-form-item label="内容" prop="content">
-                <MarkdownEditor ref="editorMd" :id="'edit'"></MarkdownEditor>
+                <MarkdownEditor :options="editorOptions" ref="editorMd" :id="'edit'"></MarkdownEditor>
             </el-form-item>
             <el-form-item>
                 <el-button
@@ -71,6 +71,10 @@
                         required: true
                     },
                 },
+                //editor编辑器默认配置对象
+                editorOptions: {
+                    markdown: "",
+                }
             }
         },
         watch:{
@@ -80,7 +84,8 @@
                     type : this.defaultData.type,
                     tag : this.defaultData.tag,
                     content : this.defaultData.content,
-                    surface : this.defaultData.surface
+                    surface : this.defaultData.surface,
+                    contentHTML: this.defaultData.contentHTML
                 };
             },
         },
@@ -96,7 +101,8 @@
                             title: this.form.title,
                             tag: this.form.tag,
                             surface: this.form.surface,
-                            content: this.$refs.editorMd.editor.getMarkdown()
+                            content: this.$refs.editorMd.editor.getMarkdown(),
+                            contentHTML: this.$refs.editorMd.editor.getHTML()
                         })
                     } else {
                         return false;
@@ -109,7 +115,11 @@
             Upload
         },
         created() {
+            this.editorOptions = this.defaultData;
         },
+        destroyed() {
+
+        }
     }
 </script>
 

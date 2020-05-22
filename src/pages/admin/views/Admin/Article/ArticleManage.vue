@@ -83,6 +83,7 @@
             handleEdit(index, row) {
                 this.dialogVisible = true;
                 this.defaultData = row;
+                this.defaultData.markdown = this.defaultData.content;
             },
             handleSubmit(data) {
                 updateArticle(this.defaultData._id, data)
