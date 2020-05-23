@@ -17,6 +17,12 @@ function getArticleHot(limit = 8) {
 
 // 获取文章列表
 let getArticleShow = (function () {
+    let tags = [];
+    getArticleINFO().then((res) => {
+        tags = res.data.data.tags;
+    }).catch(() => {
+        console.log("请求tags出错");
+    });
     let skip = 0;
     let limit = 5;
     return function (index, ifFresh = false) {
@@ -24,8 +30,8 @@ let getArticleShow = (function () {
             skip = 0;
             limit = 5;
         }
-
-        let tag = ["", "个人日记", "HTML5&&CSS3", "JavaScript", "NodeJs", "Vue & React", "其它"][index];
+        // let tag = ["", "HTML&CSS", "JavaScript", "Node"][index];
+        let tag = ["", ...tags][index];
         let data = {skip, limit, tag};
         skip += limit;
         limit = 2;
@@ -54,7 +60,7 @@ function postLogin(options) {
 }
 
 //退出登陆
-function postLogout(){
+function postLogout() {
     return axios.post("/login/logout");
 }
 
@@ -80,127 +86,140 @@ function commitChildMessage(options) {
 //获取留言列表
 let getMessageList = (function () {
     let skip = 0,
-        limit=0;
+        limit = 0;
     return function () {
-        limit+=5;
+        limit += 5;
         return axios.post("/message/getList", {skip, limit});
     };
 })();
 
 //获取单篇文章的信息
-function getArticle(_id){
+function getArticle(_id) {
     return axios.post("/article", {_id});
 }
+
 //获取延伸阅读
-function getArticleExtend(tag){
+function getArticleExtend(tag) {
     return axios.post("/article/extend", {tag})
 }
 
 //搜索文章
-function getArticleSearch(keywords){
+function getArticleSearch(keywords) {
     return axios.post("/article/search", {keywords});
 }
 
 //最近访客接口
-function getVisitor(){
+function getVisitor() {
     return axios.post("/visitor");
 }
 
 //  日记接口
-function getDiary(){
+function getDiary() {
     return axios.get("/diary");
 }
 
 //获取友链
-function getLinks(){
+function getLinks() {
     return axios.get("/links");
 }
 
 /*
 * 后台管理类的接口
 * */
+
 //登陆
-function login(options){
+function login(options) {
     return axios.post("/admin/login", options);
 }
+
 //验证是否登陆
-function ifLogin(){
+function ifLogin() {
     return axios.post("/admin/login/ifLogin");
 }
+
 //发表文章
-function postArticle({type, title, content, tag, surface, contentHTML}){
-    return axios.post("/admin/article/add", {type, title, tag, surface,content, contentHTML});
+function postArticle({type, title, content, tag, surface, contentHTML}) {
+    return axios.post("/admin/article/add", {type, title, tag, surface, content, contentHTML});
 }
+
 //请求文章列表
-function getArticleList(skip=0, limit=5){
-    return axios.get(`/admin/article/get?skip=${skip}&limit=${limit}`,)
+function getArticleList(skip = 0, limit = 5) {
+    return axios.get(`/admin/article/get?skip=${ skip }&limit=${ limit }`,)
 }
 
 //请求文章列表信息
-function getArticleINFO(){
+function getArticleINFO() {
     return axios.get("/admin/article/getInfo");
 }
+
 //删除文章
-function deleteArticle(_id){
-    if(!_id){
+function deleteArticle(_id) {
+    if (!_id) {
         return Promise.reject();
     }
     return axios.post("/admin/article/delete", {_id});
 }
 
 //更新文章
-function updateArticle(_id, options){
+function updateArticle(_id, options) {
     return axios.post("/admin/article/update", {_id, options});
 }
 
 //请求用户列表
-export function getUserList(){
+export function getUserList() {
     return axios.get(`/admin/user/get`,)
 }
+
 //删除用户
-function deleteUser(_id){
+function deleteUser(_id) {
     return axios.post("/admin/user/delete", {_id});
 }
 
 //更新用户数据
-function updateUserData(_id, data){
+function updateUserData(_id, data) {
     return axios.post("/admin/user/update", {_id, data});
 }
 
 //请求留言列表
-function getMessageList_admin(){
+function getMessageList_admin() {
     return axios.get("/admin/message/get");
 }
+
 //删除留言
-function deleteMessage(_id){
+function deleteMessage(_id) {
     return axios.post("/admin/message/delete", {_id});
 }
 
 //发布日记
-function postDiary(txt, img){
+function postDiary(txt, img) {
     return axios.post("/admin/diary/submit", {txt, img});
 }
+
 //请求日记
-function getDiaryList(){
+function getDiaryList() {
     return axios.get("/admin/diary");
 }
+
 //删除日记
-function deleteDiary(_id){
-    return axios.post("/admin/diary/delete",{_id});
+function deleteDiary(_id) {
+    return axios.post("/admin/diary/delete", {_id});
 }
 
 //发布友链
-function postlinks(options){
+function postlinks(options) {
     return axios.post("/admin/links/submit", options);
 }
+
 //请求友链
-function getLinkList(){
+function getLinkList() {
     return axios.get("/admin/links");
 }
+
 //删除友链
-function deleteLink(_id){
-    return axios.post("/admin/links/delete",{_id});
+function deleteLink(_id) {
+    return axios.post("/admin/links/delete", {_id});
 }
+
 export {
     getArticleHot,
     getArticleInfo,

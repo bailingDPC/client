@@ -44,15 +44,15 @@
             },
             beforeAvatarUpload(file) {
                 const isType = /^(image\/jpeg|image\/png|image\/gif)$/.test(file.type);
-                const isLt50K = file.size / 1024 < 100;
+                const isLt100K = file.size / 1024 < 100;
 
                 if (!isType) {
                     this.$message.error('上传头像图片只能是 JPG/PNG/GIF 格式!');
                 }
-                if (!isLt50K) {
-                    this.$message.error('上传头像图片大小不能超过 50K !');
+                if (!isLt100K) {
+                    this.$message.error('上传头像图片大小不能超过 100K !');
                 }
-                return isType && isLt50K;
+                return isType && isLt100K;
             },
 
             beforeClose(){

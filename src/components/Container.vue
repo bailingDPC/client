@@ -2,7 +2,7 @@
     <div id="Container">
         <el-container>
             <el-main>
-                <ArticleShow></ArticleShow>
+                <ArticleShow :tags="getArticleTags"></ArticleShow>
             </el-main>
             <el-aside>
                 <div :class="['search', {'fixed': ifSearchFixed}]">
@@ -91,7 +91,11 @@
         },
         computed: {
             getArticleTags() {
-                return ["全部文章", ...this.articleTags];
+                let tags =  ["全部文章", ...this.articleTags];
+                if(tags.length > 8){
+                    tags.length = 8;
+                }
+                return tags;
             },
             getArticleRecommend() {
                 return this.articleHot[0] || [];

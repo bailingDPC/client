@@ -14,7 +14,7 @@
                 <router-link :to="'/Article/'+item._id" :style="{backgroundImage: 'url('+item.surface+')'}">
                     <i></i>
                 </router-link>
-                {{ item.content | contentToText}}
+                {{ item.contentHTML | contentToText}}
             </div>
             <div class="read-more">
                 <router-link :to="'/Article/'+item._id">继续阅读</router-link>
@@ -50,6 +50,7 @@
     import {getArticleShow} from "../api/index"
     export default {
         name: "ArticleShow",
+        props:["tags"],
         data() {
             return {
                 //文章数据

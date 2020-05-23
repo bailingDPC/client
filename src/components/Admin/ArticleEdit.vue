@@ -2,7 +2,7 @@
     <div>
         <el-form ref="form" :model="form" label-width="80px" :rules="rules">
             <el-form-item label="标题" prop="title">
-                <el-input v-model="form.title"></el-input>
+                <el-input v-model="form.title" placeholder="请输入标题"></el-input>
             </el-form-item>
             <el-form-item label="分类" prop="type">
                 <el-select v-model="form.type" placeholder="请选择分类">
@@ -12,10 +12,7 @@
             </el-form-item>
             <el-form-item label="标签" prop="tag">
                 <el-select v-model="form.tag" placeholder="请选择标签">
-                    <el-option label="HTML&CSS" value="HTML&Css"></el-option>
-                    <el-option label="JavaScript" value="JavaScript"></el-option>
-                    <el-option label="Node" value="Node"></el-option>
-                    <el-option label="Vue&React" value="Vue&React"></el-option>
+                    <el-option v-for="(item, index) in articleTags" :label="articleTags[index]" :value="articleTags[index]" :key="index"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="封面" prop="surface">
@@ -40,6 +37,7 @@
 
     import MarkdownEditor from "../MarkdownEditor";
     import Upload from "../Upload";
+    import {getArticleInfo} from "../../api";
 
     export default {
         name: "ArticleEdit",
@@ -71,6 +69,7 @@
                         required: true
                     },
                 },
+                articleTags: ["HTML"],
                 //editor编辑器默认配置对象
                 editorOptions: {
                     markdown: "",
@@ -116,6 +115,9 @@
         },
         created() {
             this.editorOptions = this.defaultData;
+            getArticleInfo().then((res)=>{
+                this.articleTags = res.data.data.tags;
+            }).catch();
         },
         destroyed() {
 

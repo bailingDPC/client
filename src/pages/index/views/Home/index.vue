@@ -83,8 +83,6 @@
     }
 
 
-    let scrollTop = document.documentElement.scrollTop;
-    let h = window.innerHeight;
 
 
     export default {
@@ -119,6 +117,8 @@
                 this.ifClick = !this.ifClick;
             },
             moveDown() {
+                let scrollTop = document.documentElement.scrollTop;
+                let h = window.innerHeight;
                 scrollTop += 25;
                 if (scrollTop < h) {
                     requestAnimationFrame(this.moveDown);
@@ -126,9 +126,6 @@
                     scrollTop = h;
                 }
                 document.documentElement.scrollTop = scrollTop;
-                if (scrollTop === h) {
-                    scrollTop = 0;
-                }
             }
         },
         filters: {

@@ -1,8 +1,7 @@
 <template>
     <div class="md_view">
         <div :id="id">
-
-            <textarea v-model="content"></textarea>
+            <textarea  style="display: none;" v-model="content"></textarea>
         </div>
     </div>
 </template>
@@ -17,13 +16,27 @@
                 editor: null,
                 //默认选项
                 defaultOptions: {
-                    htmlDecode: "style,script,iframe",  // you can filter tags decode
-                    width: "90%",
+                    // style,script,iframe,div
+                    htmlDecode: true,  // you can filter tags decode
+                    width: "100%",
+                    theme: "dark",
                     emoji: true,
                     taskList: true,
                     tex: true,  // 默认不解析
                     flowChart: true,  // 默认不解析
                     sequenceDiagram: true,  // 默认不解析1
+                    //
+                    gfm                  : true,
+                    toc                  : true,
+                    tocStartLevel        : 1,
+                    tocTitle             : "目录",
+                    tocDropdown          : false,
+                    tocContainer         : "",
+                    markdown             : "",
+                    markdownSourceCode   : true,
+                    atLink               : true,    // for @link
+                    emailLink            : true,    // for mail address auto link
+                    previewCodeHighlight : true
                 }
             }
         },
