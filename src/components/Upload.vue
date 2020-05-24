@@ -14,9 +14,12 @@
 <script>
     export default {
         name: "Upload",
+        props:[
+            "imageUrl"
+        ],
         data(){
             return {
-                imageUrl: ""
+
             };
         },
         methods: {
@@ -32,6 +35,9 @@
                 }
                 return isType;
             },
+        },
+        mounted(){
+            this.imageUr = this.imgUrl || "";
         }
     }
 </script>

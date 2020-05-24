@@ -12,11 +12,11 @@
             </el-form-item>
             <el-form-item label="标签" prop="tag">
                 <el-select v-model="form.tag" placeholder="请选择标签">
-                    <el-option v-for="(item, index) in articleTags" :label="articleTags[index]" :value="articleTags[index]" :key="index"></el-option>
+                    <el-option v-for="(item, index) in articleTags" :label="item" :value="item" :key="index"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="封面" prop="surface">
-                <Upload @uploadSuccess="uploadSuccess"></Upload>
+                <Upload :imageUrl="defaultData.surface || '' " @uploadSuccess="uploadSuccess"></Upload>
             </el-form-item>
             <el-form-item label="内容" prop="content">
                 <MarkdownEditor :options="editorOptions" ref="editorMd" :id="'edit'"></MarkdownEditor>
@@ -119,9 +119,6 @@
                 this.articleTags = res.data.data.tags;
             }).catch();
         },
-        destroyed() {
-
-        }
     }
 </script>
 

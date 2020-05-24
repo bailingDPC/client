@@ -69,6 +69,11 @@
                 content: ""
             }
         },
+        watch:{
+            $route(){
+                window.location.reload();
+            }
+        },
         filters: {
             getTime(val) {
                 let date = new Date(val);

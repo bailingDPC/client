@@ -97,13 +97,10 @@
              * callback 成功后的回调函数
              */
             requireEditor(callback) {
-                // eslint-disable-next-line no-unused-vars
-                let vm = this;
                 //设置全局变量，因为editormd依赖jquery
                 window.$ = window.jQuery = $;
                 //异步加载并执行
-                // eslint-disable-next-line no-unused-vars
-                $.getScript("/lib/editor.md-master/editormd.min.js", function (script) {
+                $.getScript("/lib/editor.md-master/editormd.min.js", function () {
                     callback();
                 });
                 //加载css

@@ -14,7 +14,7 @@
                         <br>
                         <el-button
                                 type="primary"
-                                @click="ifShowAvatar = true"
+                                @click=" handleAvatar "
                                 plain
                                 size="mini"
                         >
@@ -66,7 +66,7 @@
         </div>
         <Login :dialogVisible="ifShowLogin" @handleClose="closeLogin"></Login>
         <Register :dialogVisible="ifShowRegister" @handleClose="closeRegister"></Register>
-        <Avatar :dialogVisible="ifShowAvatar" @handleClose="closeAvatar"></Avatar>
+        <ImgUpload :visible="ifShowAvatar" @hidden="closeAvatar" @success="closeAvatar"></ImgUpload>
     </div>
 </template>
 
@@ -75,13 +75,16 @@
     import Register from "./Register";
     import Login from "./Login";
     import Avatar from "./Avatar"
-    import {postIfLogin, postLogout} from "../api";
+    import { postIfLogin, postLogout} from "../api";
+    import ImgUpload from "./ImgUpload";
 
     export default {
         name: "Nav",
         components: {
+            ImgUpload,
             Register,
             Login,
+            // eslint-disable-next-line vue/no-unused-components
             Avatar
         },
         data() {
@@ -122,10 +125,12 @@
             closeLogin() {
                 this.ifShowLogin = false;
             },
-            closeAvatar() {
+            closeAvatar(type) {
                 this.ifShowAvatar = false;
+                if(type === "success"){
+                    window.location.reload();
+                }
             },
-
             handleLogout() {
                 postLogout()
                     .then(() => {
@@ -147,7 +152,7 @@
                     });
             },
             handleAvatar() {
-
+                this.ifShowAvatar = true;
             }
         },
 

@@ -8046,6 +8046,11 @@ vue-cli-plugin-element-ui@^1.1.4:
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-element-ui/-/vue-cli-plugin-element-ui-1.1.4.tgz#8307640d85230ba61e15e926879f695ba8eeaedf"
   integrity sha512-Q1/JFvdnKPpogSFvT3GfcUxftLFFrTU6ILXIp1/0PO22TlmwxVVr+1zLOQ1FABO34cooWR1+yoQMasVBA4sPQg==
 
+vue-cropper@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/vue-cropper/-/vue-cropper-0.5.2.tgz#069b2ffe5336b3f800d3049df2b0746263bd8642"
+  integrity sha512-51lj/7s3ok6pVvceibc/dM4zFccrx3020CX7i/k6Kl9K3M9ot8NXRvXf813ME2Dwwa3Eb/TeSM87+zu5ZcXAZA==
+
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"

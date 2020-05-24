@@ -71,7 +71,7 @@
              */
             requireEditor(callback) {
                 //加载css
-                $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '/lib/editor.md-master/css/editormd.min.css'));
+                $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', '/lib/editor_theme.css'));
 
                 // eslint-disable-next-line no-unused-vars
                 let vm = this;
@@ -104,9 +104,9 @@
         }
     }
 </script>
-<style scoped lang="less">
+<style scoped lang="css">
     .md_view {
         width: 100%;
-        overflow: hidden;
+        /*overflow: hidden;*/
     }
 </style>

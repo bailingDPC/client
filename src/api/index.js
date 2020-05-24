@@ -5,6 +5,11 @@ axios.defaults.baseURL = "http://localhost:3000"; //默认访问网址
 axios.defaults.withCredentials = true; //跨域允许携带cookie
 axios.defaults.headers.post['Content-Type'] = "application/x-www-form-urlencoded"; //设置post请求格式
 
+
+//用户头像上传接口
+function postAvatarSurface(options, config){
+    return axios.post("/upload/avatar", options, config);
+}
 //获取文章信息
 function getArticleInfo() {
     return axios.post("/article/getArticleInfo")
@@ -221,6 +226,7 @@ function deleteLink(_id) {
 }
 
 export {
+    postAvatarSurface,
     getArticleHot,
     getArticleInfo,
     getArticleShow,
