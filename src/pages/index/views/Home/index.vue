@@ -38,14 +38,14 @@
                             <div class="bgImg"
                                  :style="{backgroundImage:'url('+item.surface+')'}"></div>
                             <div class="link">
-                                <a :href="`/article/${item._id}`"><i class="el-icon-link"></i></a>
+                                <router-link :to="`/Article/${item._id}`"><i class="el-icon-link"></i></router-link>
                             </div>
                         </div>
                         <div class="info">
                             <div class="title"><a href="">{{item.title}}</a></div>
                             <div class="time">{{item.date|year}}年{{item.date|month}}月{{item.date|date}}日</div>
                             <div class="content">{{item.description}}</div>
-                            <a :href="`/article/${item._id}`" class="link">阅读更多</a>
+                            <router-link :to="`/Article/${item._id}`" class="link">阅读更多</router-link>
                         </div>
                     </li>
                 </ul>

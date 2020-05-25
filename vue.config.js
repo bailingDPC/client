@@ -15,6 +15,7 @@ module.exports = {
             title: "后台管理"
         }
     },
+    assetsDir: "static",
     configureWebpack: {
 
         // plugins: [
