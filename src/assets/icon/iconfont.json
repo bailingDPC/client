@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "715906",
+      "name": "火箭",
+      "font_class": "huojian",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "1742407",
+      "name": "火箭",
+      "font_class": "huojian1",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "2776582",
+      "name": "火箭",
+      "font_class": "huojian2",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "13848953",
+      "name": "火箭",
+      "font_class": "huojian3",
+      "unicode": "e502",
+      "unicode_decimal": 58626
+    }
+  ]
+}

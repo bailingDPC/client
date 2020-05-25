@@ -1,17 +1,22 @@
 <template>
     <div id="root">
         <router-view/>
+        <ToTop></ToTop>
     </div>
 </template>
 
 <script>
+    import ToTop from "../components/ToTop";
+    export default {
+        components: {ToTop}
+    }
 </script>
 
 <style lang="less">
     @import "../assets/css/font.css";
     @import "../assets/css/reset.css";
     ::-webkit-scrollbar{
-        /*display:none;*/
+        display:none;
     }
     #root{
         width: 100%;

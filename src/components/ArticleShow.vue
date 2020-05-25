@@ -14,7 +14,7 @@
                 <router-link :to="'/Article/'+item._id" :style="{backgroundImage: 'url('+item.surface+')'}">
                     <i></i>
                 </router-link>
-                {{ item.contentHTML | contentToText}}
+                {{ item.description | contentToText}}
             </div>
             <div class="read-more">
                 <router-link :to="'/Article/'+item._id">继续阅读</router-link>

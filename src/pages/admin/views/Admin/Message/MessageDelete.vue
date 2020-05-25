@@ -11,8 +11,17 @@
             >
             </el-table-column>
             <el-table-column
-                    label="留言内容"
+                    label="留言时间"
                     width="180"
+                    prop="date"
+            >
+                <template slot-scope="scope">
+                    <span>{{ scope.row.date | getDate }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="留言内容"
+                    width="680"
             >
                 <template slot-scope="scope">
                     <span v-html="scope.row.content"></span>
@@ -41,6 +50,16 @@
         data() {
             return {
                 messageList: []
+            }
+        },
+        filters:{
+            getDate(val){
+                let date = new Date(val);
+                let H = date.getHours();
+                let M = date.getMinutes();
+                H < 10 ? H= "0"+H : H;
+                M < 10 ? M= "0"+M : M;
+                return `${date.getFullYear()}-${(date.getMonth()+1)}-${date.getDate()}  ${H}:${M}`;
             }
         },
         methods: {

@@ -13,8 +13,11 @@
             <el-table-column
                     label="注册时间"
                     width="180"
-                    prop="date"
+                    prop="regDate"
             >
+                <template slot-scope="scope">
+                    <span>{{ scope.row.regDate | getDate }}</span>
+                </template>
             </el-table-column>
             <el-table-column
                     label="禁用"
@@ -66,6 +69,12 @@
             return {
                 userList: [],
                 metaData: []
+            }
+        },
+        filters:{
+            getDate(val){
+                let date = new Date(val);
+                return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
             }
         },
         methods: {

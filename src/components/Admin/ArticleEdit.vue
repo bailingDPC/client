@@ -18,6 +18,11 @@
             <el-form-item label="封面" prop="surface">
                 <Upload :imageUrl="defaultData.surface || '' " @uploadSuccess="uploadSuccess"></Upload>
             </el-form-item>
+            <el-form-item label="简介" prop="description">
+                <el-col :span="16">
+                    <el-input type="textarea" :rows="8" show-word-limit maxlength="360" v-model="form.description" placeholder="请输入文章简介"></el-input>
+                </el-col>
+            </el-form-item>
             <el-form-item label="内容" prop="content">
                 <MarkdownEditor :options="editorOptions" ref="editorMd" :id="'edit'"></MarkdownEditor>
             </el-form-item>
@@ -51,6 +56,7 @@
                     tag: this.defaultData.tag || "",
                     type: this.defaultData.type || "",
                     surface: this.defaultData.surface || "",
+                    description: this.defaultData.description || "",
                     content: this.defaultData.content || "",
                 },
                 rules: {
@@ -58,6 +64,7 @@
                     title: [{required: true, message: "请输入标题"}],
                     tag: [{required: true, message: "请选择标签"}],
                     surface: [{required: true, message: "请选择封面"}],
+                    description:[{required: true, message: "请输入文章简介"}],
                     content: {
                         validator: (rule, value, cb) => {
                             if (this.$refs.editorMd.editor.getHTML()) {
@@ -82,6 +89,7 @@
                     title : this.defaultData.title,
                     type : this.defaultData.type,
                     tag : this.defaultData.tag,
+                    description: this.defaultData.description,
                     content : this.defaultData.content,
                     surface : this.defaultData.surface,
                     contentHTML: this.defaultData.contentHTML
@@ -100,6 +108,7 @@
                             title: this.form.title,
                             tag: this.form.tag,
                             surface: this.form.surface,
+                            description: this.form.description,
                             content: this.$refs.editorMd.editor.getMarkdown(),
                             contentHTML: this.$refs.editorMd.editor.getHTML()
                         })

@@ -22,7 +22,8 @@
                         <ul>
 
                             <li>邮 箱 ：<a href="mailto:1954968288@qq.com">1954968288@qq.com</a></li>
-                            <li>GitHub ：<a href="https://github.com/bailingDPC" target="_blank">https://github.com/bailingDPC</a></li>
+                            <li>GitHub ：<a href="https://github.com/bailingDPC" target="_blank">https://github.com/bailingDPC</a>
+                            </li>
 
                         </ul>
 
@@ -32,12 +33,10 @@
                         <p>
                             本站建于2020年5月。
                         </p>
-                        <span>
-                    本站结构：
-                </span>
+                        <span>本站技术：</span>
                         <ul>
-                            <li>前 端 ：<code>ElementUi + Vue</code></li>
-                            <li>后 端 ：<code>express + node + MongoDB + editor.md</code></li>
+                            <li>前 端 ：<code>ElementUi + Vue + editor.md</code></li>
+                            <li>后 端 ：<code>express + node + MongoDB</code></li>
                         </ul>
                         <p>
                             本站采用阿里云提供的服务器ESC。
@@ -46,7 +45,8 @@
                     <section>
                         <h1>关于版权</h1>
                         <p>
-                            本站采用「 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">署名-非商业性使用 4.0 国际 (CC BY-NC 4.0)</a>」创作共享协议。
+                            本站采用「 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">署名-非商业性使用
+                            4.0 国际 (CC BY-NC 4.0)</a>」创作共享协议。
                             只要在使用时注明出处，那么您可以可以对本站所有原创内容进行转载、节选、二次创作，但是您不得对其用于商业目的。
                         </p>
                     </section>
@@ -73,7 +73,7 @@
 
     export default {
         name: "About",
-        components:{
+        components: {
             CanAnimation,
             Nav,
         }
@@ -84,6 +84,7 @@
     .About {
         width: 100%;
         padding-top: 61px;
+
         .canvas {
             position: relative;
             width: 100%;
@@ -103,29 +104,35 @@
                 }
             }
         }
+
         .about-main {
             box-sizing: border-box;
             width: 100%;
             max-width: 1360px;
             padding: 30px 50px;
             margin: 0 auto;
-            .a-m-content{
+
+            .a-m-content {
                 width: 100%;
                 background-color: #fff;
-                article{
+
+                article {
                     padding: 10px;
-                    section{
+
+                    section {
                         padding: 20px;
                         background: #fff;
                         font-size: 1rem;
-                        code{
-                            background: rgba(27,31,35,.05);
+
+                        code {
+                            background: rgba(27, 31, 35, .05);
                             padding: .2rem .4rem;
                             color: #bd4147;
                             border-radius: 4px;
-                            font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+                            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
                         }
-                        h1{
+
+                        h1 {
                             margin-bottom: 1rem;
                             padding-left: 1rem;
                             border-left: .25rem solid #6bc30d;
@@ -133,19 +140,24 @@
                             font-size: 1.5rem;
                             line-height: 1.5rem;
                         }
-                        p{
+
+                        p {
                             margin: 1.5rem 0;
                             padding-left: 18px;
                             line-height: 1.75rem;
                         }
-                        span{
+
+                        span {
                             padding-left: 18px;
                         }
-                        ul{
+
+                        ul {
                             padding-left: 18px;
-                            li{
+
+                            li {
                                 line-height: 2rem;
-                                a{
+
+                                a {
                                     color: #0366d6;
                                 }
                             }

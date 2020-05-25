@@ -143,8 +143,8 @@ function ifLogin() {
 }
 
 //发表文章
-function postArticle({type, title, content, tag, surface, contentHTML}) {
-    return axios.post("/admin/article/add", {type, title, tag, surface, content, contentHTML});
+function postArticle({type, title, content, tag, surface, contentHTML, description}) {
+    return axios.post("/admin/article/add", {type, title, tag, surface, content, contentHTML, description});
 }
 
 //请求文章列表
@@ -156,6 +156,12 @@ function getArticleList(skip = 0, limit = 5) {
 function getArticleINFO() {
     return axios.get("/admin/article/getInfo");
 }
+
+//请求单篇文章详情信息
+function getArticle_Admin(_id) {
+    return axios.post("/admin/article/getArticle", {_id});
+}
+
 
 //删除文章
 function deleteArticle(_id) {
@@ -250,6 +256,7 @@ export {
     postArticle,
     getArticleList,
     getArticleINFO,
+    getArticle_Admin,
     deleteArticle,
     updateArticle,
     deleteUser,

@@ -13,8 +13,10 @@
             <el-table-column
                     label="时间"
                     width="180"
-                    prop="date"
             >
+                <template slot-scope="scope">
+                    <span>{{ scope.row.date | getDate }}</span>
+                </template>
             </el-table-column>
             <el-table-column
                     label="分类"
@@ -26,6 +28,17 @@
                     label="标签"
                     width="180"
                     prop="tag"
+            >
+            </el-table-column>
+            <el-table-column label="封面" width="180">
+                <template slot-scope="scope">
+                    <img v-if="scope.row.surface" :src="scope.row.surface" height="50" alt="">
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="阅览量"
+                    width="180"
+                    prop="pv"
             >
             </el-table-column>
             <el-table-column label="操作">
@@ -64,7 +77,13 @@
 
 <script>
     import Pagination from "../../../../../components/Admin/Pagination";
-    import {getArticleINFO, getArticleList, deleteArticle, updateArticle} from "../../../../../api/index";
+    import {
+        getArticleINFO,
+        getArticleList,
+        deleteArticle,
+        updateArticle,
+        getArticle_Admin,
+    } from "../../../../../api/index";
     import ArticleEdit from "../../../../../components/Admin/ArticleEdit";
 
     export default {
@@ -79,11 +98,37 @@
                 PaginationSize: 5,
             }
         },
+        filters: {
+            getDate(val) {
+                let date = new Date(val);
+                return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+            }
+        },
         methods: {
             handleEdit(index, row) {
-                this.dialogVisible = true;
-                this.defaultData = row;
-                this.defaultData.markdown = this.defaultData.content;
+                let _this = this;
+                getArticle_Admin(row._id)
+                    .then(res => {
+                        if (res.data.code === 0) {
+                            _this.defaultData = res.data.data;
+                            _this.defaultData.markdown = _this.defaultData.content;
+                            _this.dialogVisible = true;
+                        } else {
+                            this.$message({
+                                message: res.data.msg,
+                                type: "error",
+                                duration: 2000
+                            })
+                        }
+                    })
+                    .catch((res) => {
+                        this.$message({
+                            message: res.data.msg,
+                            type: "success",
+                            duration: 2000
+                        })
+                    });
+
             },
             handleSubmit(data) {
                 updateArticle(this.defaultData._id, data)
@@ -118,25 +163,34 @@
                 this.dialogVisible = false;
             },
             handleDelete(index, row) {
-                deleteArticle(row._id)
-                    .then((res) => {
-                        console.log(res);
-                        if (res.data.code === 0) {
+                this.$confirm("此操作将永久删除该篇文章的所有信息，是否继续", "提示", {
+                    confirmButtonText: "确定",
+                    cancelButtonText: "取消",
+                    type: "warning"
+                })
+                    .then(() => {
+                        deleteArticle(row._id)
+                            .then((res) => {
+                                console.log(res);
+                                if (res.data.code === 0) {
+                                    this.$message({
+                                        message: "删除成功",
+                                        type: "success",
+                                        duration: 2000
+                                    });
+                                    this.articleList.splice(index, 1);
+                                }
+                            }).catch(() => {
                             this.$message({
-                                message: "删除成功",
-                                type: "success",
+                                message: "删除失败",
+                                type: "error",
                                 duration: 2000
-                            });
-                            this.articleList.splice(index, 1);
-                        }
-                    }).catch(() => {
-                    this.$message({
-                        message: "删除失败",
-                        type: "error",
-                        duration: 2000
+                            })
+                        });
                     })
+                    .catch(() => {
 
-                });
+                    });
             },
             handlePaginationClick(index, size) {
                 this.PaginationIndex = index;

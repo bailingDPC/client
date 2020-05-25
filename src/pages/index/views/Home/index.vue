@@ -44,7 +44,7 @@
                         <div class="info">
                             <div class="title"><a href="">{{item.title}}</a></div>
                             <div class="time">{{item.date|year}}年{{item.date|month}}月{{item.date|date}}日</div>
-                            <div class="content">{{item.content}}</div>
+                            <div class="content">{{item.description}}</div>
                             <a :href="`/article/${item._id}`" class="link">阅读更多</a>
                         </div>
                     </li>

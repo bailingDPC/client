@@ -74,7 +74,6 @@
 
     import Register from "./Register";
     import Login from "./Login";
-    import Avatar from "./Avatar"
     import { postIfLogin, postLogout} from "../api";
     import ImgUpload from "./ImgUpload";
 
@@ -84,8 +83,6 @@
             ImgUpload,
             Register,
             Login,
-            // eslint-disable-next-line vue/no-unused-components
-            Avatar
         },
         data() {
             return {
@@ -156,7 +153,7 @@
             }
         },
 
-        mounted() {
+        created() {
             postIfLogin().then(res => {
                 if (res.data.userInfo) {
                     this.ifLogin = true;

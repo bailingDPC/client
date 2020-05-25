@@ -30,43 +30,43 @@
 
     export default {
         name: "Register",
-        data(){
+        data() {
             return {
 
                 //表单数据
-                form :{
-                    user : "",
-                    pwd : ""
+                form: {
+                    user: "",
+                    pwd: ""
                 },
                 //表单验证
-                rules:{
+                rules: {
                     //用户名验证
-                    user : [
-                        { required: true, message: '请输入用户名', trigger: 'blur' },
+                    user: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'},
                         {
                             //数据类型
-                            type:"string",
+                            type: "string",
                             //正则规则
                             // eslint-disable-next-line no-useless-escape
                             pattern: /^[\w\u4e00-\u9fa5\uac00-\ud7ff\u0800-\u4e00\-]{2,7}$/,
                             message: '请输入正确格式用户名',
-                            trigger: ['blur','change']
+                            trigger: ['blur', 'change']
                         }
                     ],
 
                     //密码验证
-                    pwd : {
-                        type:"string",
-                        validator : (rule,value,cb)=>{
-                            if (value){
+                    pwd: {
+                        type: "string",
+                        validator: (rule, value, cb) => {
+                            if (value) {
                                 //验证密码是否符合规则
                                 // eslint-disable-next-line no-useless-escape
-                                if (/^[\w<>,.?|;':"{}!@#$%^&*()\/\-\[\]\\]{6,18}$/.test(value)){
+                                if (/^[\w<>,.?|;':"{}!@#$%^&*()\/\-\[\]\\]{6,18}$/.test(value)) {
                                     cb();
-                                }else{
+                                } else {
                                     cb(new Error("请输入正确格式密码"));
                                 }
-                            }else{
+                            } else {
                                 cb(new Error("请输入密码"));
                             }
 
@@ -74,50 +74,49 @@
                             this.form.checkPwd && this.$refs.form.validateField("checkPwd");
                         },
                         required: true,
-                        trigger: ['blur','change']
+                        trigger: ['blur', 'change']
                     }
                 },
 
                 //登录过程禁用
-                submitDisabled : false
+                submitDisabled: false
             }
         },
-        props : ["dialogVisible"],
-        methods : {
-            handleClick(){
+        props: ["dialogVisible"],
+        methods: {
+            handleClick() {
                 this.submitDisabled = true;
                 this.$refs["form"].validate((valid) => {
                     if (valid) {
                         //验证都通过
-                        postLogin(this.form).then(res=>{
-                            if (res.data.code){
+                        postLogin(this.form).then(res => {
+                            if (res.data.code) {
                                 this.submitDisabled = false;
                                 //登录失败
                                 this.$message({
                                     message: res.data.msg,
                                     type: 'error',
-                                    duration : 2000
+                                    duration: 2000
                                 });
-                            }
-                            else{
+                            } else {
                                 //登录成功
                                 this.$message({
                                     message: res.data.msg,
                                     type: 'success',
-                                    duration : 2000
+                                    duration: 2000
                                 });
-                                setTimeout(()=>{
+                                setTimeout(() => {
                                     this.submitDisabled = false;
 
                                     this.$emit("handleClose");
                                     window.location.reload();
-                                },1800);
+                                }, 1800);
                             }
-                        }).catch(()=>{
+                        }).catch(() => {
                             this.$message({
                                 message: "登录失败请稍后再试~",
                                 type: 'error',
-                                duration : 2000
+                                duration: 2000
                             });
                             this.submitDisabled = false;
                         });
@@ -128,7 +127,7 @@
                     }
                 });
             },
-            beforeClose(){
+            beforeClose() {
                 this.$emit("handleClose");
             }
         },
@@ -140,25 +139,32 @@
 </script>
 
 <style scoped lang="less">
-    .el-form{
+    /deep/  .el-dialog{
+        border-radius: 12px;
+    }
+
+    .el-form {
         user-select: none;
         padding-right: 30px;
 
-        .vcode{
-            .el-input{
+        .vcode {
+            .el-input {
                 float: left;
                 width: 35%;
             }
-            div.svg{
+
+            div.svg {
                 float: left;
                 width: 35%;
                 height: 40px;
-                /deep/ svg{
+
+                /deep/ svg {
                     width: 100% !important;
                     height: 100% !important;
                 }
             }
-            .el-link{
+
+            .el-link {
                 font-size: 12px;
             }
         }
