@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="info">
-                            <div class="title"><a href="">{{item.title}}</a></div>
+                            <div class="title"><router-link :to="`/Article/${item._id}`">{{item.title}}</router-link></div>
                             <div class="time">{{item.date|year}}年{{item.date|month}}月{{item.date|date}}日</div>
                             <div class="content">{{item.description}}</div>
                             <router-link :to="`/Article/${item._id}`" class="link">阅读更多</router-link>
