@@ -20,10 +20,10 @@
                     <i class="fa fa-check"></i>技术优先
                 </p>
                 <p>交换友链可在留言板留言.本站链接如下：<br>
-                    名称：燕十三<br>
-                    网址：https://www.yanshisan.cn<br>
-                    图标：https://www.yanshisan.cn/logo.png<br>
-                    描述：燕十三·一个人的江湖</p>
+                    名称：白灵<br>
+                    网址：http://106.14.126.148<br>
+                    图标：https://106.14.126.148/logo.png<br>
+                    描述：风雪中的白灵</p>
 
                 <p>申请提交后若无其它原因将在24小时内审核,如超过时间还未通过,请私信我.(各种额外因素)</p>
             </div>
